@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 const initialState = {
   selectedCustomer: 'Adam',
+  isEditingAddress: false,
   customers: {
     Adam: {
       name: 'Adam',
@@ -17,9 +18,9 @@ const initialState = {
       name: 'Smara',
       balance: 100.00,
       address: {
-        street: '101 Left Lane',
+        street: '102 Left Lane',
         postalCode: '10330',
-        city: 'Nowhereville',
+        city: 'Now-here-ville',
         country: 'SPACE'
       }
     }
@@ -29,10 +30,15 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'SELECT':
-      console.log(action.payload);
       return {
         ...state,
-        selectedCustomer: action.payload.name
+        selectedCustomer: action.payload.name,
+        isEditingAddress: false
+      };
+    case 'EDIT_ADDRESS':
+      return {
+        ...state,
+        isEditingAddress: true
       };
     default:
       return state;

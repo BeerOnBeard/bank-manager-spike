@@ -1,0 +1,12 @@
+.edit-address {
+  margin: 1rem;
+}
+
+.edit-address div {
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.edit-address label {
+  min-width: 6rem;
+}
