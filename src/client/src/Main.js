@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Main.css';
-import DisplayAddress from './DisplayAddress';
-import EditAddress from './EditAddress';
+import DisplayAddress from './address/DisplayAddress';
+import EditAddress from './address/EditAddress';
 
 class Main extends Component {
   render() {
