@@ -3,11 +3,20 @@
   "version": "0.1.0",
   "description": "Manage bank accounts for customers",
   "scripts": {
-    "start": "node server.js"
+    "client-debug": "cd client && npm start",
+    "server-debug": "nodemon --inspect server.js",
+    "debug": "concurrently --kill-others-on-fail \"npm:client-debug\" \"npm:server-debug\""
   },
   "author": "BeerOnBeard",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9"
+  },
+  "nodemonConfig": {
+    "ignore": [ "client/*" ]
   }
 }
