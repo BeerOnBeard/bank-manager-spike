@@ -4,6 +4,12 @@ The goal of this project is to play with React, Redux, and Socket.io. As a bank 
 
 ## Local Development
 
+First, make sure to run `npm i` in both the `src` directory **and** the client directory. From the root directory, run the following command:
+
+```
+cd src && npm i && cd client && npm i;
+```
+
 Running `npm run debug` from the `src` directory will simultaneously launch the NodeJS server with debugging enabled and the React dev server. If changes are made to any file in `src`, but not in `client/`, the NodeJS server will restart. If changes are made to files in `client/`, the React system will recompile and refresh connected browsers.
 
 For VSCode users, a `launch.json` has been configured to attach to the debug port opened by the NodeJS server. If the server restarts, the debugger should automatically reconnect.

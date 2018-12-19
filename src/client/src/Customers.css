@@ -1,0 +1,15 @@
+.customer-list {
+  width: 10rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.customer-list__customer {
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem;
+}
+
+.customer-list__customer--selected {
+  font-weight: bold;
+}
