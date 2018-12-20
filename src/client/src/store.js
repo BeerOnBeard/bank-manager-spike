@@ -35,6 +35,16 @@ function reducer(state = initialState, action) {
         selectedCustomer: action.payload.name,
         isEditingAddress: false
       };
+    case 'CUSTOMER_ADDED':
+      let newCustomers = { ...state.customers };
+      newCustomers[action.payload.name] = {
+        name: action.payload.name,
+        address: {}
+      };
+      return {
+        ...state,
+        customers: newCustomers
+      };
     case 'EDIT_ADDRESS':
       return {
         ...state,
