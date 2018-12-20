@@ -10,11 +10,11 @@ class DisplayAddress extends Component {
   render() {
     return (
       <div className="display-address">
-        <button onClick={_ => this.props.editAddress()}>Edit</button>
         <div>Street: {this.props.address.street}</div>
         <div>City: {this.props.address.city}</div>
         <div>Postal Code: {this.props.address.postalCode}</div>
         <div>Country: {this.props.address.country}</div>
+        <button onClick={_ => this.props.editAddress()}>Edit</button>
       </div>
     );
   }

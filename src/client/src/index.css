@@ -2,7 +2,8 @@ html, body, #root {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%
+  width: 100%;
+  background-color: #c6c6c6;
 }
 
 body {

@@ -1,5 +1,8 @@
 .edit-address {
   margin: 1rem;
+  padding: 1rem;
+  background-color: #a6a6a6;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .edit-address div {
@@ -9,4 +12,8 @@
 
 .edit-address label {
   min-width: 6rem;
+}
+
+.edit-address input {
+  width: 100%;
 }

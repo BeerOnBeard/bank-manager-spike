@@ -1,3 +1,14 @@
 .display-address {
+  margin: 1rem;
   padding: 1rem;
+  background-color: #a6a6a6;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.display-address div {
+  margin-bottom: 0.5rem;
+}
+
+.display-address button {
+  width: 100%;
 }
