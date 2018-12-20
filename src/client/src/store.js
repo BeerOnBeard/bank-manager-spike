@@ -40,6 +40,15 @@ function reducer(state = initialState, action) {
         ...state,
         isEditingAddress: true
       };
+    case 'DISPLAY_ADDRESS':
+      return {
+        ...state,
+        isEditingAddress: false
+      };
+    case 'ADDRESS_UPDATED':
+      let newState = { ...state };
+      newState.customers[action.payload.customerName].address = action.payload.address;
+      return newState;
     default:
       return state;
   }

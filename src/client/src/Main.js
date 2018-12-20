@@ -12,7 +12,7 @@ class Main extends Component {
         <div>Balance: { this.props.customer.balance }</div>
         {
           this.props.isEditingAddress
-            ? <EditAddress address={this.props.customer.address} />
+            ? <EditAddress customerName={this.props.customer.name} address={this.props.customer.address} />
             : <DisplayAddress address={this.props.customer.address} />
         }
       </div>
