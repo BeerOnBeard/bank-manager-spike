@@ -21,8 +21,7 @@ class Customer extends Component {
         className={ this.getClasses() }
         onClick={_ => this.props.selectCustomer(this.props.customer.name)}
         >
-        <div>Name: {this.props.customer.name}</div>
-        <div>Balance: {this.props.customer.balance}</div>
+        {this.props.customer.name}
       </div>
     );
   }

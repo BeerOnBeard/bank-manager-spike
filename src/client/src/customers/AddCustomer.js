@@ -22,7 +22,7 @@ class AddCustomer extends Component {
   render() {
     return (
       <div className="customer-list__add">
-        <input type="text" value={this.state.name} onChange={e => this.updateName(e)} />
+        <input type="text" value={this.state.name} onChange={e => this.updateName(e)} placeholder="Name" />
         <button onClick={_ => this.props.addCustomer(this.state.name)} disabled={this.state.name === ''}>+</button>
       </div>
     );

@@ -1,18 +1,29 @@
 .customer-list {
-  display: flex;
-  flex-flow: column;
   background-color: #a6a6a6;
-  padding: 0.5rem;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  position: relative;
+}
+
+.customer-list__add {
+  margin: 0.5rem;
+}
+
+.customer-list__scroll-container {
+  position: absolute;
+  top: 3rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .customer-list__customer {
-  width: 100%;
-  width: 8rem;
-  height: 2rem;
-  margin-bottom: 2rem;
+  margin: 1rem 0 1rem 0.5rem;
+  cursor: pointer;
 }
 
 .customer-list__customer--selected {
   font-weight: bold;
+  margin-left: 1rem;
 }

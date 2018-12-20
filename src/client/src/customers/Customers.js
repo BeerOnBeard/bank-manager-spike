@@ -9,11 +9,13 @@ class Customers extends Component {
     return (
       <div className="customer-list">
         <AddCustomer />
-      {
-        Object.keys(this.props.customers).map(key => 
-          <Customer key={this.props.customers[key].name} customer={this.props.customers[key]} />
-        )
-      }
+        <div className="customer-list__scroll-container">
+        {
+          Object.keys(this.props.customers).map(key => 
+            <Customer key={this.props.customers[key].name} customer={this.props.customers[key]} />
+          )
+        }
+        </div>
       </div>
     );
   }
