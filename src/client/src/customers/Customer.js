@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CUSTOMER_SELECTED } from '../redux/events';
 
-function selectCustomer(customerName) {
-  return { type: CUSTOMER_SELECTED, payload: { name: customerName } };
+function selectCustomer(id) {
+  return { type: CUSTOMER_SELECTED, payload: { id } };
 }
 
 class Customer extends Component {
   getClasses() {
     let classes = 'customer-list__customer';
-    if (this.props.selectedCustomer === this.props.customer.name) {
+    if (this.props.selectedCustomer === this.props.customer.id) {
       classes += ' customer-list__customer--selected'
     }
 
@@ -20,7 +20,7 @@ class Customer extends Component {
     return (
       <div
         className={ this.getClasses() }
-        onClick={_ => this.props.selectCustomer(this.props.customer.name)}
+        onClick={_ => this.props.selectCustomer(this.props.customer.id)}
         >
         {this.props.customer.name}
       </div>

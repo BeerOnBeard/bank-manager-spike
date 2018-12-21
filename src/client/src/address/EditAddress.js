@@ -5,7 +5,6 @@ import './EditAddress.css';
 class EditAddress extends Component {
   constructor(props) {
     super(props);
-    this.customerName = props.customerName
     this.state = {
       street: props.address.street || '',
       city: props.address.city || '',
@@ -32,7 +31,7 @@ class EditAddress extends Component {
 
   submit(event) {
     event.preventDefault();
-    updateAddress(this.customerName, this.state);
+    updateAddress(this.props.customerId, this.state);
     this.props.stopEditingAddress();
   }
 

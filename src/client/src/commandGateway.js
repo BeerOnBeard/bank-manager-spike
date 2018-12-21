@@ -11,16 +11,16 @@ export function createCustomer(name) {
 
 // address should be an object
 // { street, city, postalCode, country }
-export function updateAddress(customerName, address) {
-  io().emit(UPDATE_ADDRESS, { customerName, address });
+export function updateAddress(id, address) {
+  io().emit(UPDATE_ADDRESS, { id, address });
 }
 
 // value should be a number
-export function deposit(customerName, value) {
-  io().emit(DEPOSIT_MONEY, { customerName, value });
+export function deposit(id, value) {
+  io().emit(DEPOSIT_MONEY, { id, value });
 }
 
 // value should be a number
-export function withdraw(customerName, value) {
-  io().emit(WITHDRAW_MONEY, { customerName, value });
+export function withdraw(id, value) {
+  io().emit(WITHDRAW_MONEY, { id, value });
 }

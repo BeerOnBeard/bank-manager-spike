@@ -1,0 +1,18 @@
+version: '3'
+services:
+  server:
+    build: .
+    ports:
+    - 5000:3100
+    depends_on:
+    - eventstore
+    restart: unless-stopped
+    environment:
+      EVENTSTORE_HOST: 'eventstore'
+  eventstore:
+    image: eventstore/eventstore:release-4.1.1
+    environment:
+      EVENTSTORE_START_STANDARD_PROJECTIONS: 'true'
+    ports:
+    - 2113:2113
+    - 1113:1113

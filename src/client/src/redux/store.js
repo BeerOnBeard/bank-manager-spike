@@ -10,7 +10,8 @@ const TransactionTypes = {
   {
     selectedCustomer: '',
     customers: {
-      Adam: {
+      <GUID>: {
+        id: <GUID>,
         name: 'Adam',
         address: { street, postalCode, city, country },
         transactions: [
@@ -21,8 +22,9 @@ const TransactionTypes = {
   }
 */
 
-function createCustomer({ name, address, transactions }) {
+function createCustomer({ id, name, address, transactions }) {
   return {
+    id: id,
     name: name,
     address: address || {},
     transactions: transactions || []
@@ -35,13 +37,13 @@ function reducer(state = {customers: {}}, action) {
     {
       return {
         ...state,
-        selectedCustomer: action.payload.name
+        selectedCustomer: action.payload.id
       };
     }
     case CUSTOMER_ADDED:
     {
       let newCustomers = { ...state.customers };
-      newCustomers[action.payload.name] = createCustomer(action.payload);
+      newCustomers[action.payload.id] = createCustomer(action.payload);
       return {
         ...state,
         customers: newCustomers
@@ -49,21 +51,21 @@ function reducer(state = {customers: {}}, action) {
     }
     case ADDRESS_UPDATED:
     {
-      let updatedCustomer = { ...state.customers[action.payload.customerName] };
+      let updatedCustomer = { ...state.customers[action.payload.id] };
       updatedCustomer.address = action.payload.address;
-      return { ...state, customers: { ...state.customers, [updatedCustomer.name]: updatedCustomer } };
+      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
     }
     case MONEY_DEPOSITED:
     {
-      let updatedCustomer = { ...state.customers[action.payload.customerName] };
-      updatedCustomer.transactions.push({ type: TransactionTypes.Deposit, value: action.payload.value });
-      return { ...state, customers: { ...state.customers, [updatedCustomer.name]: updatedCustomer } };
+      let updatedCustomer = { ...state.customers[action.payload.id] };
+      updatedCustomer.transactions.push({ type: TransactionTypes.Deposit, value: Number(action.payload.value) });
+      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
     }
     case MONEY_WITHDRAWN:
     {
-      let updatedCustomer = { ...state.customers[action.payload.customerName] };
-      updatedCustomer.transactions.push({ type:TransactionTypes.Withdrawal, value: action.payload.value });
-      return { ...state, customers: { ...state.customers, [updatedCustomer.name]: updatedCustomer } };
+      let updatedCustomer = { ...state.customers[action.payload.id] };
+      updatedCustomer.transactions.push({ type:TransactionTypes.Withdrawal, value: Number(action.payload.value) });
+      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
     }
     default:
       return state;

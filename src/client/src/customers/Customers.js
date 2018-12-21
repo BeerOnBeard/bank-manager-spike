@@ -12,7 +12,7 @@ class Customers extends Component {
         <div className="customer-list__scroll-container">
         {
           Object.keys(this.props.customers).map(key => 
-            <Customer key={this.props.customers[key].name} customer={this.props.customers[key]} />
+            <Customer key={this.props.customers[key].id} customer={this.props.customers[key]} />
           )
         }
         </div>

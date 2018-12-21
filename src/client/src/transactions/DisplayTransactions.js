@@ -23,11 +23,11 @@ class DisplayTransactions extends Component {
       <div className="display-transactions">
         <div className="display-transactions__control">
           <input type="number" min="1" value={this.state.deposit} onChange={this.depositChanged} required />
-          <button disabled={!this.state.canDeposit} onClick={_ => deposit(this.props.customerName, this.state.deposit)}>Deposit</button>
+          <button disabled={!this.state.canDeposit} onClick={_ => deposit(this.props.customerId, this.state.deposit)}>Deposit</button>
         </div>
         <div className="display-transactions__control">
           <input type="number" min="1" value={this.state.withdrawal} onChange={this.withdrawalChanged} required />
-          <button disabled={!this.state.canWithdraw} onClick={_ => withdraw(this.props.customerName, this.state.withdrawal)}>Withdraw</button>
+          <button disabled={!this.state.canWithdraw} onClick={_ => withdraw(this.props.customerId, this.state.withdrawal)}>Withdraw</button>
         </div>
         <div className="display-transactions__scroll-container">
         {

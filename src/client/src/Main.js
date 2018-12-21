@@ -42,10 +42,10 @@ class Main extends Component {
         <div>Balance: { this.balance() }</div>
         {
           this.state.isEditingAddress
-            ? <EditAddress address={this.props.customer.address} customerName={this.props.customer.name} stopEditingAddress={this.stopEditingAddress} />
+            ? <EditAddress address={this.props.customer.address} customerId={this.props.customer.id} stopEditingAddress={this.stopEditingAddress} />
             : <DisplayAddress address={this.props.customer.address} startEditingAddress={this.startEditingAddress} />
         }
-        <DisplayTransactions customerName={this.props.customer.name} transactions={this.props.customer.transactions} />
+        <DisplayTransactions customerId={this.props.customer.id} transactions={this.props.customer.transactions} />
       </div>
     );
   }
