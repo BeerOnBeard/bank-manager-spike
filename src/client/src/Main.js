@@ -45,7 +45,7 @@ class Main extends Component {
             ? <EditAddress address={this.props.customer.address} customerName={this.props.customer.name} stopEditingAddress={this.stopEditingAddress} />
             : <DisplayAddress address={this.props.customer.address} startEditingAddress={this.startEditingAddress} />
         }
-        <DisplayTransactions />
+        <DisplayTransactions customerName={this.props.customer.name} transactions={this.props.customer.transactions} />
       </div>
     );
   }

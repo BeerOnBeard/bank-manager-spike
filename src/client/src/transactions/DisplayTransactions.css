@@ -1,14 +1,28 @@
 .display-transactions {
   flex: 1;
+  display: flex;
+  flex-flow: column;
   margin: 1rem;
   background-color: #a6a6a6;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   position: relative;
 }
 
+.display-transactions__control {
+  display: flex;
+}
+
+.display-transactions__control > input {
+  flex: 1;
+}
+
+.display-transactions__control > button {
+  width: 5rem;
+}
+
 .display-transactions__scroll-container {
   position: absolute;
-  top: 0;
+  top: 3rem;
   bottom: 0;
   left: 0;
   right: 0;

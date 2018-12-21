@@ -1,8 +1,16 @@
 const port = 3100;
+
+// commands
 const CREATE_CUSTOMER = 'CREATE_CUSTOMER';
 const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
+const DEPOSIT_MONEY = 'DEPOSIT_MONEY';
+const WITHDRAW_MONEY = 'WITHDRAW_MONEY';
+
+// events
 const CUSTOMER_ADDED = 'CUSTOMER_ADDED';
 const ADDRESS_UPDATED = 'ADDRESS_UPDATED';
+const MONEY_DEPOSITED = 'MONEY_DEPOSITED';
+const MONEY_WITHDRAWN = 'MONEY_WITHDRAWN';
 
 const express = require('express');
 const app = express();
@@ -20,4 +28,12 @@ io.on('connection', function(socket) {
   socket.on(UPDATE_ADDRESS, payload => {
     io.emit(ADDRESS_UPDATED, { customerName: payload.customerName, address: payload.address });
   });
+
+  socket.on(DEPOSIT_MONEY, payload => {
+    io.emit(MONEY_DEPOSITED, { customerName: payload.customerName, value: payload.value });
+  });
+
+  socket.on(WITHDRAW_MONEY, payload => {
+    io.emit(MONEY_WITHDRAWN, { customerName: payload.customerName, value: payload.value });
+  })
 });
