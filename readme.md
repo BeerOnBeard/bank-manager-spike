@@ -12,6 +12,6 @@ For VSCode users, a `launch.json` has been configured to attach to the debug por
 
 ## Environment Variables
 
-### REACT_APP_SOCKET_HOST in Client
+### NODE_ENV
 
-The default value is `http://localhost:3100` for local development. The environment variable can be set when building the client to override the value for other environments.
+When `NODE_ENV` is set to production, the client will set up Socket.io to point to the window location. Otherwise, Socket.io on the client will point to `http://localhost:3100` for local development.
