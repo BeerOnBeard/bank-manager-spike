@@ -1,4 +1,4 @@
-import { createStore, bindActionCreators } from 'redux';
+import { createStore } from 'redux';
 import { CUSTOMER_SELECTED, CUSTOMER_ADDED, ADDRESS_UPDATED } from './events';
 
 /*

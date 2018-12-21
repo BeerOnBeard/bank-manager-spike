@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './DisplayAddress.css';
 
 class DisplayAddress extends Component {
@@ -16,6 +15,4 @@ class DisplayAddress extends Component {
   }
 }
 
-export default connect(
-
-)(DisplayAddress);
+export default DisplayAddress;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { updateAddress } from '../commandGateway';
 import './EditAddress.css';
 
@@ -62,7 +61,4 @@ class EditAddress extends Component {
   }
 }
 
-export default connect(
-  null,
-  { updateAddress }
-)(EditAddress);
+export default EditAddress;
