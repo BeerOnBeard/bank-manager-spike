@@ -10,13 +10,15 @@
   "author": "BeerOnBeard",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.9"
   },
   "nodemonConfig": {
-    "ignore": [ "client/*" ]
+    "ignore": [
+      "client/*"
+    ]
   }
 }

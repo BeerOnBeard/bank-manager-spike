@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CUSTOMER_SELECTED } from '../redux/events';
 
 function selectCustomer(customerName) {
-  return { type: 'SELECT', payload: { name: customerName } };
+  return { type: CUSTOMER_SELECTED, payload: { name: customerName } };
 }
 
 class Customer extends Component {

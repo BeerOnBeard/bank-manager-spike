@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './DisplayAddress.css';
 
-function editAddress() {
-  return { type: 'EDIT_ADDRESS' }
-}
-
 class DisplayAddress extends Component {
   render() {
     return (
@@ -14,13 +10,12 @@ class DisplayAddress extends Component {
         <div>City: {this.props.address.city}</div>
         <div>Postal Code: {this.props.address.postalCode}</div>
         <div>Country: {this.props.address.country}</div>
-        <button onClick={_ => this.props.editAddress()}>Edit</button>
+        <button onClick={_ => this.props.startEditingAddress()}>Edit</button>
       </div>
     );
   }
 }
 
 export default connect(
-  null,
-  { editAddress }
+
 )(DisplayAddress);

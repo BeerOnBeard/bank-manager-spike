@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateAddress } from '../commandGateway';
 import './EditAddress.css';
-
-function updateAddress(customerName, address) {
-  return {
-    type: 'ADDRESS_UPDATED',
-    payload: { customerName, address }
-  };
-}
-
-function stopEditing() {
-  return { type: 'DISPLAY_ADDRESS' };
-}
 
 class EditAddress extends Component {
   constructor(props) {
@@ -43,8 +33,8 @@ class EditAddress extends Component {
 
   submit(event) {
     event.preventDefault();
-    this.props.updateAddress(this.customerName, this.state);
-    this.props.stopEditing();
+    updateAddress(this.customerName, this.state);
+    this.props.stopEditingAddress();
   }
 
   render() {
@@ -74,5 +64,5 @@ class EditAddress extends Component {
 
 export default connect(
   null,
-  { updateAddress, stopEditing }
+  { updateAddress }
 )(EditAddress);
