@@ -7,10 +7,10 @@ class EditAddress extends Component {
     super(props);
     this.customerName = props.customerName
     this.state = {
-      street: props.address.street,
-      city: props.address.city,
-      postalCode: props.address.postalCode,
-      country: props.address.country
+      street: props.address.street || '',
+      city: props.address.city || '',
+      postalCode: props.address.postalCode || '',
+      country: props.address.country || ''
     };
   }
 

@@ -4,12 +4,14 @@ The goal of this project is to play with React, Redux, and Socket.io. As a bank 
 
 ## Local Development
 
-First, make sure to run `npm i` in both the `src` directory **and** the client directory. From the root directory, run the following command:
+Running `npm install` from the `src` directory will handle installing all dependencies for src, server, and client.
 
-```
-cd src && npm i && cd client && npm i;
-```
-
-Running `npm run debug` from the `src` directory will simultaneously launch the NodeJS server with debugging enabled and the React dev server. If changes are made to any file in `src`, but not in `client/`, the NodeJS server will restart. If changes are made to files in `client/`, the React system will recompile and refresh connected browsers.
+Running `npm run dev` from the `src` directory will simultaneously launch the NodeJS server with debugging enabled and the React dev server.
 
 For VSCode users, a `launch.json` has been configured to attach to the debug port opened by the NodeJS server. If the server restarts, the debugger should automatically reconnect.
+
+## Environment Variables
+
+### REACT_APP_SOCKET_HOST in Client
+
+The default value is `http://localhost:3100` for local development. The environment variable can be set when building the client to override the value for other environments.

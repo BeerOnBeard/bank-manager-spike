@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io from './ioProvider';
 import { CUSTOMER_ADDED, ADDRESS_UPDATED } from './redux/events';
 
 export default function socketAdapter(store) {

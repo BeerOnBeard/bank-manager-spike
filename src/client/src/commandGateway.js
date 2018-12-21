@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io from './ioProvider';
 const CREATE_CUSTOMER = 'CREATE_CUSTOMER';
 const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 
