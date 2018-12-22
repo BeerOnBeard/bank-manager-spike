@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Manage bank accounts for customers",
   "scripts": {
-    "debug": "nodemon --inspect server.js"
+    "debug": "nodemon --inspect server.js",
+    "debug-brk": "nodemon --inspect-brk server.js"
   },
   "author": "BeerOnBeard",
   "license": "ISC",
