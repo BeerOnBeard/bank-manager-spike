@@ -1,8 +1,5 @@
 import io from './ioProvider';
-const CREATE_CUSTOMER = 'CREATE_CUSTOMER';
-const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
-const DEPOSIT_MONEY = 'DEPOSIT_MONEY';
-const WITHDRAW_MONEY = 'WITHDRAW_MONEY';
+import { CREATE_CUSTOMER, UPDATE_ADDRESS, DEPOSIT_MONEY, WITHDRAW_MONEY } from 'customer/Commands';
 
 // name should be a string
 export function createCustomer(name) {

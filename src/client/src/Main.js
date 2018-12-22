@@ -21,16 +21,6 @@ class Main extends Component {
     this.setState({ isEditingAddress: false });
   }
 
-  balance() {
-    return this.props.customer.transactions.reduce((accumulator, transaction) => {
-      if (transaction.type === 'Deposit') {
-        return accumulator + transaction.value;
-      } else {
-        return accumulator - transaction.value;
-      }
-    }, 0);
-  }
-
   render() {
     if (!this.props.customer) {
       return null;
@@ -39,7 +29,7 @@ class Main extends Component {
     return (
       <div className="main">
         <div>Name: { this.props.customer.name }</div>
-        <div>Balance: { this.balance() }</div>
+        <div>Balance: { this.props.customer.balance }</div>
         {
           this.state.isEditingAddress
             ? <EditAddress address={this.props.customer.address} customerId={this.props.customer.id} stopEditingAddress={this.stopEditingAddress} />

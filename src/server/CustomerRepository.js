@@ -1,5 +1,5 @@
 const EventStore = require('event-store-client');
-const Customer = require('./Customer');
+const Customer = require('./CommandDecoratedCustomer');
 
 class CustomerRepository {
   _buildStreamName(customerId) {

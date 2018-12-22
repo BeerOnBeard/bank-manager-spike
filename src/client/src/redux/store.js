@@ -1,71 +1,47 @@
 import { createStore } from 'redux';
-import { CUSTOMER_SELECTED, CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } from './events';
+import { CUSTOMER_SELECTED } from './events';
+import { CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } from 'customer/Events';
+import Customer from 'customer';
 
-const TransactionTypes = {
-  Withdrawal: 'Withdrawal',
-  Deposit: 'Deposit'
-};
-
-/* State Schema
-  {
-    selectedCustomer: '',
-    customers: {
-      <GUID>: {
-        id: <GUID>,
-        name: 'Adam',
-        address: { street, postalCode, city, country },
-        transactions: [
-          { type, value }
-        ]
-      }
-    }
-  }
-*/
-
-function createCustomer({ id, name, address, transactions }) {
-  return {
-    id: id,
-    name: name,
-    address: address || {},
-    transactions: transactions || []
-  };
+function generateNewStateWithCustomer(state, customer) {
+  return { ...state, customers: { ...state.customers, [customer.id]: customer } };
 }
 
-function reducer(state = {customers: {}}, action) {
-  switch (action.type) {
+function reducer(state = {customers: {}}, event) {
+  switch (event.type) {
     case CUSTOMER_SELECTED:
     {
       return {
         ...state,
-        selectedCustomer: action.payload.id
+        selectedCustomer: event.payload.id
       };
     }
     case CUSTOMER_ADDED:
     {
-      let newCustomers = { ...state.customers };
-      newCustomers[action.payload.id] = createCustomer(action.payload);
-      return {
-        ...state,
-        customers: newCustomers
-      };
+      let newCustomer = new Customer();
+      newCustomer.apply(event);
+      return generateNewStateWithCustomer(state, newCustomer);
     }
     case ADDRESS_UPDATED:
     {
-      let updatedCustomer = { ...state.customers[action.payload.id] };
-      updatedCustomer.address = action.payload.address;
-      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
+      let currentCustomer = state.customers[event.data.id];
+      let updatedCustomer = new Customer(currentCustomer);
+      updatedCustomer.apply(event);
+      return generateNewStateWithCustomer(state, updatedCustomer);
     }
     case MONEY_DEPOSITED:
     {
-      let updatedCustomer = { ...state.customers[action.payload.id] };
-      updatedCustomer.transactions.push({ type: TransactionTypes.Deposit, value: Number(action.payload.value) });
-      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
+      let currentCustomer = state.customers[event.data.id];
+      let updatedCustomer = new Customer(currentCustomer);
+      updatedCustomer.apply(event);
+      return generateNewStateWithCustomer(state, updatedCustomer);
     }
     case MONEY_WITHDRAWN:
     {
-      let updatedCustomer = { ...state.customers[action.payload.id] };
-      updatedCustomer.transactions.push({ type:TransactionTypes.Withdrawal, value: Number(action.payload.value) });
-      return { ...state, customers: { ...state.customers, [updatedCustomer.id]: updatedCustomer } };
+      let currentCustomer = state.customers[event.data.id];
+      let updatedCustomer = new Customer(currentCustomer);
+      updatedCustomer.apply(event);
+      return generateNewStateWithCustomer(state, updatedCustomer);
     }
     default:
       return state;

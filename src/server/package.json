@@ -8,6 +8,7 @@
   "author": "BeerOnBeard",
   "license": "ISC",
   "dependencies": {
+    "customer": "file:../customer",
     "event-store-client": "^1.0.0",
     "express": "^4.16.4",
     "socket.io": "^2.2.0",

@@ -1,0 +1,9 @@
+{
+  "name": "customer",
+  "version": "0.1.0",
+  "description": "Customer aggregate, event and command definitions",
+  "main": "Customer.js",
+  "private": true,
+  "author": "BeerOnBeard",
+  "license": "ISC"
+}

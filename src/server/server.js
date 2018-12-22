@@ -1,12 +1,6 @@
 // update ../client/src/ioProvider.js if you update this port
 const port = 3100;
 
-// commands
-const CREATE_CUSTOMER = 'CREATE_CUSTOMER';
-const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
-const DEPOSIT_MONEY = 'DEPOSIT_MONEY';
-const WITHDRAW_MONEY = 'WITHDRAW_MONEY';
-
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -26,6 +20,7 @@ const eventStoreConfig = {
 
 const EventStore = require('event-store-client');
 const CustomerRepository = require('./CustomerRepository');
+const { CREATE_CUSTOMER, UPDATE_ADDRESS, DEPOSIT_MONEY, WITHDRAW_MONEY } = require('customer/Commands');
 let connection = new EventStore.Connection({
   host: eventStoreConfig.host,
   port: eventStoreConfig.port,
