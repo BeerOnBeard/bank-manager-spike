@@ -1,4 +1,3 @@
-const EventStore = require('event-store-client');
 const generateGuid = require('uuid/v4');
 const Customer = require('customer');
 const { CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } = require('customer/Events');
@@ -6,7 +5,7 @@ const { CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } = re
 const EventFactory = {
   customerAdded: name => {
     return {
-      eventId: EventStore.Connection.createGuid(),
+      eventId: generateGuid(),
       eventType: CUSTOMER_ADDED,
       data: {
         id: generateGuid(),
@@ -16,21 +15,21 @@ const EventFactory = {
   },
   addressUpdated: (id, address) => {
     return {
-      eventId: EventStore.Connection.createGuid(),
+      eventId: generateGuid(),
       eventType: ADDRESS_UPDATED,
       data: { id, address }
     };
   },
   moneyDeposited: (id, value) => {
     return {
-      eventId: EventStore.Connection.createGuid(),
+      eventId: generateGuid(),
       eventType: MONEY_DEPOSITED,
       data: { id, value }
     };
   },
   moneyWithdrawn: (id, value) => {
     return {
-      eventId: EventStore.Connection.createGuid(),
+      eventId: generateGuid(),
       eventType: MONEY_WITHDRAWN,
       data: { id, value }
     };
