@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { CUSTOMER_SELECTED } from './events';
+import { INIT_CUSTOMERS, CUSTOMER_SELECTED } from './events';
 import { CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } from 'customer/Events';
 import Customer from 'customer';
 
@@ -9,13 +9,10 @@ function generateNewStateWithCustomer(state, customer) {
 
 function reducer(state = {customers: {}}, event) {
   switch (event.type) {
+    case INIT_CUSTOMERS:
+      return { ...state, customers: event.payload };
     case CUSTOMER_SELECTED:
-    {
-      return {
-        ...state,
-        selectedCustomer: event.payload.id
-      };
-    }
+      return { ...state, selectedCustomer: event.payload.id };
     case CUSTOMER_ADDED:
     {
       let newCustomer = new Customer();

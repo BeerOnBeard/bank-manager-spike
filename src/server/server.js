@@ -20,7 +20,8 @@ const eventStoreConfig = {
 
 const EventStore = require('event-store-client');
 const CustomerRepository = require('./CustomerRepository');
-const { CREATE_CUSTOMER, UPDATE_ADDRESS, DEPOSIT_MONEY, WITHDRAW_MONEY } = require('customer/Commands');
+const { REQUEST_CUSTOMERS, CREATE_CUSTOMER, UPDATE_ADDRESS, DEPOSIT_MONEY, WITHDRAW_MONEY } = require('customer/Commands');
+const { CUSTOMER_ADDED, ADDRESS_UPDATED, MONEY_DEPOSITED, MONEY_WITHDRAWN } = require('customer/Events');
 let connection = new EventStore.Connection({
   host: eventStoreConfig.host,
   port: eventStoreConfig.port,
@@ -36,6 +37,8 @@ let connection = new EventStore.Connection({
 const customerRepository = new CustomerRepository(connection, eventStoreConfig.credentials.username, eventStoreConfig.credentials.password);
 
 io.on('connection', function(socket) {
+  socket.on(REQUEST_CUSTOMERS, cb => cb(customersReadModel));
+
   socket.on(CREATE_CUSTOMER, async payload => {
     let customer = await customerRepository.get();
     customer.create(payload.name);
@@ -61,9 +64,30 @@ io.on('connection', function(socket) {
   });
 });
 
-connection.subscribeToStream(
+const Customer = require('customer');
+let customersReadModel = {};
+const customersReadModelReducer = function(event) {
+  switch(event.eventType) {
+    case CUSTOMER_ADDED:
+    {
+      let customer = new Customer();
+      customer.apply(event);
+      customersReadModel[customer.id] = customer;
+    }
+    case ADDRESS_UPDATED:
+    case MONEY_DEPOSITED:
+    case MONEY_WITHDRAWN:
+    {
+      customersReadModel[event.data.id].apply(event);
+    }
+  }
+}
+
+let catchUpSubscriptionSettings = new EventStore.CatchUpSubscription.Settings(undefined, undefined, false, true);
+connection.subscribeToStreamFrom(
   "$ce-Customer",
-  true,
+  undefined,
+  eventStoreConfig.credentials,
   storedEvent => {
     let customerEvent = {
       eventType: storedEvent.eventType,
@@ -71,21 +95,16 @@ connection.subscribeToStream(
       data: storedEvent.data
     };
 
+    customersReadModelReducer(customerEvent);
     io.emit(customerEvent.eventType, customerEvent);
   },
-  confirmation => {
-    console.log('Subscription confirmation');
-    console.log(confirmation);
+  () => {
+    console.log('live processing started');
   },
   dropped => {
     console.log('Subscription dropped');
     console.log(dropped);
     process.exit(1);
   },
-  eventStoreConfig.credentials,
-  notHandled => {
-    console.log('Unhandled error in subscription');
-    console.log(notHandled);
-    process.exit(1);
-  }
+  catchUpSubscriptionSettings
 );
