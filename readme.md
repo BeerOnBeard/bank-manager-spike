@@ -4,6 +4,12 @@ The goal of this project is to play with React, Redux, and Socket.io. As a bank 
 
 ## Local Development
 
+An EventStore instance is needed to run the system. `docker-compose.yml` has one configured correctly for local development.
+
+```
+docker-compose up eventstore
+```
+
 Running `npm install` from the `src` directory will handle installing all dependencies for src, server, and client.
 
 Running `npm run dev` from the `src` directory will simultaneously launch the NodeJS server with debugging enabled and the React dev server.
